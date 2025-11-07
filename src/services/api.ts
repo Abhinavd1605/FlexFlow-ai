@@ -1,0 +1,56 @@
+const API_BASE_URL = 'http://localhost:3002/api';
+
+export interface Message {
+  role: 'user' | 'model';
+  parts: { text: string }[];
+}
+
+export interface ChatResponse {
+  response: string;
+  history: Message[];
+}
+
+export const chatWithAI = async (message: string, history: Message[] = []): Promise<ChatResponse> => {
+  try {
+    console.log('Sending request to:', `${API_BASE_URL}/chat`);
+    const response = await fetch(`${API_BASE_URL}/chat`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message, history }),
+    });
+
+    console.log('Response status:', response.status);
+    const responseText = await response.text();
+    console.log('Raw response:', responseText.substring(0, 500)); // Log first 500 chars
+
+    try {
+      const data = JSON.parse(responseText);
+      
+      if (!response.ok) {
+        console.error('API Error:', data);
+        throw new Error(data.error || `Server responded with status ${response.status}`);
+      }
+      
+      return data;
+    } catch (parseError) {
+      console.error('Failed to parse JSON response:', parseError);
+      console.error('Response was:', responseText);
+      throw new Error(`Invalid JSON response from server: ${responseText.substring(0, 200)}`);
+    }
+  } catch (error) {
+    console.error('Error in chatWithAI:', error);
+    throw error;
+  }
+};
+
+export const checkServerHealth = async (): Promise<{ status: string; message: string }> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/health`);
+    return await response.json();
+  } catch (error) {
+    console.error('Error checking server health:', error);
+    throw error;
+  }
+};

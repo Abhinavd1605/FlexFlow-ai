@@ -52,7 +52,7 @@ export const Hero = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8">
               <div className="space-y-2">
-                <div className="text-4xl md:text-5xl font-bold gradient-text">70%</div>
+                <div className="text-4xl md:text-5xl font-bold gradient-text">100%</div>
                 <div className="text-sm text-muted-foreground">Call Automation</div>
               </div>
               <div className="space-y-2">
@@ -105,7 +105,7 @@ export const Hero = () => {
               
               <div className="absolute bottom-10 left-10 glass-card p-4 w-28 h-28 flex items-center justify-center animate-float" style={{ animationDelay: "2s" }}>
                 <div className="space-y-1 text-center">
-                  <div className="text-2xl font-bold gradient-text">70%</div>
+                  <div className="text-2xl font-bold gradient-text">100%</div>
                   <div className="text-xs text-muted-foreground">Faster</div>
                 </div>
               </div>
