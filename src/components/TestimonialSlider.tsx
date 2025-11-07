@@ -42,25 +42,42 @@ export const TestimonialSlider = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollInterval = useRef<NodeJS.Timeout>();
   const [isPaused, setIsPaused] = useState(false);
+  const [items] = useState([...testimonials, ...testimonials]); // Duplicate items for seamless loop
 
   const scrollStep = () => {
     if (!scrollContainerRef.current || isPaused) return;
     
     const container = scrollContainerRef.current;
-    const scrollAmount = container.scrollLeft + 1;
+    const scrollAmount = container.scrollLeft + 0.5; // Slower, smoother scroll
+    const itemWidth = 320; // Width of each testimonial card (w-80 = 20rem = 320px)
     const maxScroll = container.scrollWidth - container.clientWidth;
     
-    if (scrollAmount >= maxScroll) {
-      container.scrollTo({ left: 0, behavior: 'smooth' });
+    // When we're about to reach the end of the duplicated items,
+    // instantly reset to the start without animation
+    if (scrollAmount >= maxScroll - itemWidth) {
+      // Temporarily disable smooth scrolling for the reset
+      container.style.scrollBehavior = 'auto';
+      container.scrollLeft = 0;
+      // Force reflow to ensure the reset happens before we re-enable smooth scrolling
+      void container.offsetWidth;
+      container.style.scrollBehavior = 'smooth';
     } else {
       container.scrollTo({ left: scrollAmount, behavior: 'auto' });
     }
   };
 
   useEffect(() => {
-    scrollInterval.current = setInterval(scrollStep, 20);
+    // Initialize the scroll position to the start of the first set of items
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = 0;
+    }
+    
+    scrollInterval.current = setInterval(scrollStep, 16); // ~60fps
+    
     return () => {
-      if (scrollInterval.current) clearInterval(scrollInterval.current);
+      if (scrollInterval.current) {
+        clearInterval(scrollInterval.current);
+      }
     };
   }, [isPaused]);
 
@@ -68,49 +85,17 @@ export const TestimonialSlider = () => {
     <div className="py-6 md:py-8">
       <div 
         ref={scrollContainerRef}
-        className="flex gap-6 overflow-x-auto py-2 -mx-4 px-4 scrollbar-hide"
+        className="flex gap-6 overflow-x-hidden py-2 -mx-4 px-4 scrollbar-hide"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
+        style={{
+          maskImage: 'linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%)',
+        }}
       >
-        {testimonials.map((testimonial) => (
+        {items.map((testimonial, index) => (
           <div 
-            key={testimonial.id}
-            className="flex-shrink-0 w-80 bg-white dark:bg-gray-800 rounded-xl p-5 shadow-md border border-gray-100 dark:border-gray-700"
-          >
-            <div className="flex items-center mb-4">
-              <div className="relative h-14 w-14 rounded-full overflow-hidden border-2 border-blue-100 dark:border-blue-900/30 mr-4">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.name}
-                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.onerror = null;
-                    target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.name)}&background=3b82f6&color=fff`;
-                  }}
-                />
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h4>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.role}</p>
-              </div>
-              <div className="ml-auto flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    className={`h-4 w-4 ${i < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300 dark:text-gray-600'}`} 
-                  />
-                ))}
-              </div>
-            </div>
-            <p className="text-gray-600 dark:text-gray-300 italic">"{testimonial.content}"</p>
-          </div>
-        ))}
-        
-        {/* Duplicate items for infinite scroll effect */}
-        {testimonials.map((testimonial) => (
-          <div 
-            key={`duplicate-${testimonial.id}`}
+            key={`${testimonial.id}-${index}`}
             className="flex-shrink-0 w-80 bg-white dark:bg-gray-800 rounded-xl p-5 shadow-md border border-gray-100 dark:border-gray-700"
           >
             <div className="flex items-center mb-4">
