@@ -10,12 +10,16 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: 'https://flexflow-ai.onrender.com',
         changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        secure: true,
+        rewrite: (path) => path.replace(/^\/api/, '') 
       }
     }
+  },
+  // For production build
+  define: {
+    'import.meta.env.VITE_API_BASE_URL': JSON.stringify(process.env.NODE_ENV === 'production' ? 'https://flexflow-ai.onrender.com' : '/api')
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
