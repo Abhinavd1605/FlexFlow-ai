@@ -158,7 +158,8 @@ When responding:
 - Maintain a helpful, knowledgeable tone that builds trust
 - Focus on how our solutions can address specific business challenges
 
-For any technical or specific pricing questions, always offer to connect the user with our sales or technical team for a personalized consultation.`;
+For any technical or specific pricing questions, always offer to connect the user with our sales or technical team for a personalized consultation..
+`;
 
 // Chat endpoint
 app.post("/api/chat", async (req, res) => {

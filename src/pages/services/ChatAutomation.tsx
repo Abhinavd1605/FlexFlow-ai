@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MessageSquare, Smartphone, Zap, Clock, CheckCircle } from "lucide-react";
+import { Play, MessageSquare, Smartphone, Zap, Clock, CheckCircle } from "lucide-react";
 
 // Animation variants
 const container = {
@@ -79,26 +79,16 @@ export const ChatAutomation = () => {
             </motion.p>
             <motion.div 
               variants={item}
-              className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full max-w-xs mx-auto mt-8"
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button 
-                  size="lg" 
-                  className="gradient-primary transition-transform duration-300 w-full"
-                >
-                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="w-full"
-                  onClick={() => window.open('https://calendly.com/team-flexflowai/30min', '_blank', 'noopener,noreferrer')}
-                >
-                  See Live Demo
-                </Button>
-              </motion.div>
+              <Button 
+                size="lg" 
+                className="gradient-primary w-full"
+              >
+                <Play className="mr-2 h-5 w-5" /> Watch Demo
+              </Button>
             </motion.div>
           </motion.div>
         </motion.section>

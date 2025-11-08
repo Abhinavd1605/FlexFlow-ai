@@ -5,12 +5,13 @@ import { Services } from "@/components/Services";
 import { Industries } from "@/components/Industries";
 import { HowItWorks } from "@/components/HowItWorks";
 import { LiveDemos } from "@/components/LiveDemos";
-import { Pricing } from "@/components/Pricing";
+import { Team as Pricing } from "@/components/Pricing";
 import { Testimonials } from "@/components/Testimonials";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { ChatBot } from "@/components/ChatBot";
 import { WhyChoose } from "@/components/WhyChoose";
+import { FAQSection } from "@/components/FAQSection";
 
 const Index = () => {
   return (
@@ -34,6 +35,7 @@ const Index = () => {
       <LiveDemos />
       <Pricing />
       <Testimonials />
+      <FAQSection />
       <CTA />
       <Footer />
       <ChatBot />

@@ -8,7 +8,9 @@ import NotFound from "./pages/NotFound";
 import { VoiceAgents } from "./pages/services/VoiceAgents";
 import { ChatAutomation } from "./pages/services/ChatAutomation";
 import { WorkflowAutomation } from "./pages/services/WorkflowAutomation";
-import { AIBuilder } from "./pages/services/AIBuilder";
+import { AIWebsiteBuilder } from "./pages/services/AIWebsiteBuilder";
+import { PersonalChatbots } from "./pages/services/PersonalChatbots";
+import { AutomatedCalling } from "./pages/services/AutomatedCalling";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +25,9 @@ const App = () => (
           <Route path="/services/voice-agents" element={<VoiceAgents />} />
           <Route path="/services/chat-automation" element={<ChatAutomation />} />
           <Route path="/services/workflow-automation" element={<WorkflowAutomation />} />
-          <Route path="/services/ai-website-builder" element={<AIBuilder />} />
+          <Route path="/services/ai-website-builder" element={<AIWebsiteBuilder />} />
+          <Route path="/services/personal-chatbots" element={<PersonalChatbots />} />
+          <Route path="/services/automated-calling" element={<AutomatedCalling />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

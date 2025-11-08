@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "./theme-toggle";
+import { soundManager } from "@/lib/sounds";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -45,6 +46,9 @@ export const Navbar = () => {
   ];
 
   const handleNavClick = (e: React.MouseEvent, href: string, isHash: boolean) => {
+    // Play soft click sound for navigation
+    soundManager.play('softClick', 0.2);
+    
     if (isHash) {
       e.preventDefault();
       
@@ -66,6 +70,11 @@ export const Navbar = () => {
       }
     }
     setIsMenuOpen(false);
+  };
+  
+  const handleBookDemoClick = () => {
+    soundManager.play('hardClick', 0.3);
+    window.open('https://calendly.com/team-flexflowai/30min', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -102,12 +111,12 @@ export const Navbar = () => {
 
           <div className="flex items-center space-x-2">
             <ThemeToggle />
-            <Button 
-              onClick={() => window.open('https://calendly.com/team-flexflowai/30min', '_blank', 'noopener,noreferrer')}
-              className="gradient-primary font-semibold rounded-full px-6 py-2 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
-            >
-              Book Demo
-            </Button>
+              <Button
+                onClick={handleBookDemoClick}
+                className="gradient-primary font-semibold rounded-full px-6 py-2 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
+              >
+                Book Demo
+              </Button>
           </div>
 
           {/* Mobile Menu Button */}

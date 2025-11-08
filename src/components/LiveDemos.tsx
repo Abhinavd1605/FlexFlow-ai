@@ -57,7 +57,20 @@ export const LiveDemos = () => {
                 <span className="text-sm text-muted-foreground flex items-center gap-1">
                   <Play className="w-4 h-4" /> {demo.duration}
                 </span>
-                <Button variant="outline" size="sm" className="group-hover:bg-primary/10 group-hover:border-primary/30">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="group-hover:bg-primary/10 group-hover:border-primary/30"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (demo.title === 'Chatbot Demo') {
+                      window.open('https://drive.google.com/file/d/1y5HpEXruoI70gqSxpARphHbaiaEl9EqW/view?usp=sharing', '_blank', 'noopener,noreferrer');
+                    } else {
+                      // Add your default action for other demos here, for example:
+                      // window.open('#', '_blank');
+                    }
+                  }}
+                >
                   Watch Demo <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>

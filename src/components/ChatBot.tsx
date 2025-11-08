@@ -7,7 +7,7 @@ import { chatWithAI, Message } from "@/services/api";
 export const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Array<{ role: 'user' | 'bot'; content: string }>>([
-    { role: "bot", content: "Hi! I'm FlexBot. How can I help you today?" },
+    { role: "bot", content: "Hi! I'm Flexi Bot. How can I help you today?" },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -79,7 +79,7 @@ export const ChatBot = () => {
         <div className="fixed bottom-24 right-6 w-80 md:w-96 glass-card rounded-2xl shadow-2xl z-50 overflow-hidden">
           {/* Header */}
           <div className="gradient-primary p-4">
-            <h3 className="font-semibold text-white">Chat with FlexBot</h3>
+            <h3 className="font-semibold text-white">Chat with Our Flexi Bot</h3>
             <p className="text-xs text-white/80">We typically reply in a few minutes</p>
           </div>
 

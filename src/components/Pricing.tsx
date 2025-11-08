@@ -1,116 +1,145 @@
-import { Check } from "lucide-react";
+import { Linkedin, Mail, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { ArrowRight } from "lucide-react";
 
-export const Pricing = () => {
-  const plans = [
+// Import team member images
+import vishnuImage from "../team/images/vishnu.jpg";
+
+type TeamMember = {
+  name: string;
+  role: string;
+  description: string;
+  image: string;
+  social: {
+    linkedin: string;
+    twitter: string;
+    email: string;
+  };
+};
+export const Team = () => {
+  const teamMembers: TeamMember[] = [
     {
-      name: "Starter",
-      price: "₹4,999",
-      period: "/month",
-      description: "Perfect for small businesses getting started with AI",
-      features: [
-        "100 AI calls per month",
-        "Basic voice agent",
-        "Google Sheets logging",
-        "Email support",
-        "7-day free trial",
-      ],
-      popular: false,
+      name: "Siddamsetti Vishnu Vardhan",
+      role: "Founder & CEO",
+      description:
+        "Full Stack & AI Engineer from IIIT Pune, passionate about building intelligent automation products using React, FastAPI, and cloud-native architectures. Vishnu has developed multiple SaaS and AI-driven systems, now channeling that experience to scale FlexFlow AI into a next-gen automation agency.",
+      image: vishnuImage,
+      social: {
+        linkedin: "https://linkedin.com/in/vishnu-siddamsetti",
+        twitter: "vishnu_vardhan07",
+        email: "vishnu@flexflow.ai",
+      },
     },
     {
-      name: "Pro",
-      price: "₹9,999",
-      period: "/month",
-      description: "Advanced automation for growing businesses",
-      features: [
-        "500 AI calls per month",
-        "WhatsApp integration",
-        "Custom voice personality",
-        "CRM integration",
-        "Priority support",
-        "Analytics dashboard",
-      ],
-      popular: true,
-    },
-    {
-      name: "Business",
-      price: "₹14,999",
-      period: "/month",
-      description: "Enterprise-grade solutions for scaling operations",
-      features: [
-        "Unlimited AI calls",
-        "Full dashboard access",
-        "Advanced analytics",
-        "Multi-language support",
-        "Dedicated account manager",
-        "Custom integrations",
-        "API access",
-      ],
-      popular: false,
+      name: "Hrishikesh Poloju",
+      role: "Co-Founder & CTO",
+      description:
+        "Distributed Systems & Backend Engineer from IIIT Pune with deep expertise in scalable infrastructures and data pipelines. Having worked on AI automation tools and SaaS systems, Hrishikesh now drives FlexFlow’s core technology, blending innovation with real-world performance.",
+      image: "/team/hrishikesh.jpg",
+      social: {
+        linkedin: "https://linkedin.com/in/hrishikeshpoloju",
+        twitter: "hrishipoloju",
+        email: "hrishikesh@flexflow.ai",
+      },
     },
   ];
-
   return (
-    <section id="pricing" className="py-20 md:py-32 relative">
+    <section id="team" className="py-20 md:py-32 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
+          {/* Heading */}
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-5xl font-heading font-bold">
-              Simple, <span className="gradient-text">Transparent</span> Pricing
+              The <span className="gradient-text">Founders</span> Behind FlexFlow AI
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Choose the perfect plan for your business needs
+              Before launching FlexFlow AI, we built SaaS products and custom AI solutions 
+              for clients across domains — from real-time automation systems to data-driven dashboards.
+              Now, we’re bringing that same technical depth to help modern businesses automate intelligently.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {plans.map((plan, index) => (
+          {/* Team Cards */}
+          <div className="grid md:grid-cols-2 gap-12">
+            {teamMembers.map((member, index) => (
               <div
                 key={index}
-                className={`glass-card p-8 space-y-6 hover:scale-105 transition-all duration-300 relative ${
-                  plan.popular ? "glow-border" : ""
-                }`}
+                className="glass-card p-8 rounded-2xl hover:shadow-lg hover:-translate-y-2 transition-all duration-300"
               >
-                {plan.popular && (
-                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 gradient-primary">
-                    MOST POPULAR
-                  </Badge>
-                )}
+                <div className="flex flex-col md:flex-row gap-8 items-center">
+                  {/* Avatar */}
+                  <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-primary/20">
+                    <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center text-4xl text-muted-foreground font-bold">
+                      {member.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </div>
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-heading font-bold">{plan.name}</h3>
-                  <p className="text-sm text-muted-foreground">{plan.description}</p>
-                </div>
+                  {/* Details */}
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-2xl font-bold mb-1">{member.name}</h3>
+                    <p className="text-primary font-medium mb-4">{member.role}</p>
+                    <p className="text-muted-foreground mb-6">{member.description}</p>
 
-                <div className="space-y-1">
-                  <div className="flex items-end gap-2">
-                    <span className="text-4xl font-bold gradient-text">{plan.price}</span>
-                    <span className="text-muted-foreground mb-1">{plan.period}</span>
+                    {/* Social */}
+                    <div className="flex justify-center md:justify-start gap-4">
+                      <a
+                        href={member.social.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-[#0077b5] transition-colors"
+                        aria-label={`${member.name}'s LinkedIn`}
+                      >
+                        <Linkedin className="w-5 h-5" />
+                      </a>
+                      <a
+                        href={`https://twitter.com/${member.social.twitter}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-[#1da1f2] transition-colors"
+                        aria-label={`${member.name}'s Twitter`}
+                      >
+                        <Twitter className="w-5 h-5" />
+                      </a>
+                      <a
+                        href={`mailto:${member.social.email}`}
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                        aria-label={`Email ${member.name}`}
+                      >
+                        <Mail className="w-5 h-5" />
+                      </a>
+                    </div>
                   </div>
                 </div>
-
-                <ul className="space-y-3">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-muted-foreground">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Button
-                  className={
-                    plan.popular
-                      ? "w-full gradient-primary font-semibold"
-                      : "w-full"
-                  }
-                  variant={plan.popular ? "default" : "outline"}
-                >
-                  Start Free Trial
-                </Button>
               </div>
             ))}
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-16">
+            <h3 className="text-2xl font-semibold mb-4">Join Our Journey 🚀</h3>
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+              We’re building FlexFlow AI to make automation smarter and accessible.
+              If you’re passionate about AI, full-stack development, or creative tech —
+              we’d love to have you on board.
+            </p>
+            <Button
+              size="lg"
+              className="group"
+              onClick={() =>
+                window.open("mailto:careers@flexflow.ai", "_blank", "noopener,noreferrer")
+              }
+            >
+              Join the Team
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </div>
         </div>
       </div>
