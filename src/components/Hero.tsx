@@ -79,12 +79,12 @@ export const Hero = () => {
               <div className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-br from-primary/20 via-secondary/20 to-primary/10 animate-float blur-3xl"></div>
               
               {/* Rotating Ring 1 */}
-              <div className="absolute w-[400px] h-[400px] rounded-full border-2 border-primary/30 animate-[spin_20s_linear_infinite]">
+              <div className="absolute w-[400px] h-[400px] rounded-full border-2 border-primary/30 animate-spin">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary shadow-lg shadow-primary/50"></div>
               </div>
               
               {/* Rotating Ring 2 */}
-              <div className="absolute w-[350px] h-[350px] rounded-full border-2 border-secondary/30 animate-[spin_15s_linear_infinite_reverse]">
+              <div className="absolute w-[350px] h-[350px] rounded-full border-2 border-secondary/30 animate-spin-reverse">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-secondary shadow-lg shadow-secondary/50"></div>
               </div>
               

@@ -2,8 +2,8 @@ import { Linkedin, Mail, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-// Import team member images
-import vishnuImage from "../team/images/vishnu.jpg";
+// Team member images (stored in public/team/images/)
+const vishnuImage = '/team/images/vishnu.jpg';
 
 type TeamMember = {
   name: string;
@@ -68,18 +68,29 @@ export const Team = () => {
               >
                 <div className="flex flex-col md:flex-row gap-8 items-center">
                   {/* Avatar */}
-                  <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-primary/20">
-                    <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center text-4xl text-muted-foreground font-bold">
+                  <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-primary/20 bg-gradient-to-br from-primary/10 to-secondary/10">
+                    {member.image ? (
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          // If image fails to load, show the fallback
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const fallback = target.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
+                      />
+                    ) : null}
+                    <div 
+                      className={`w-full h-full flex items-center justify-center text-4xl text-muted-foreground font-bold ${member.image ? 'hidden' : 'flex'}`}
+                    >
                       {member.name
                         .split(" ")
                         .map((n) => n[0])
                         .join("")}
                     </div>
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
                   </div>
 
                   {/* Details */}
