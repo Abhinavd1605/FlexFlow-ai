@@ -11,8 +11,8 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)] opacity-20"></div>
       </div>
 
-      <div className="container mx-auto px-4 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center max-w-7xl mx-auto">
           {/* Left Content */}
           <div className="space-y-8 text-left">
             {/* Badge */}
@@ -25,14 +25,14 @@ export const Hero = () => {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-black leading-[1.1] animate-fade-in">
+            <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-black leading-tight sm:leading-[1.1] animate-fade-in">
               Automate <br />
               Everything. <br />
               <span className="gradient-text font-black">Effortlessly.</span>
             </h1>
 
             {/* Subheading */}
-            <p className="text-base md:text-lg text-muted-foreground max-w-xl animate-fade-in">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl animate-fade-in">
               FlexFlow AI builds smart agents that handle your calls, chats, and workflows — 
               so your business never stops moving.
             </p>
@@ -55,24 +55,24 @@ export const Hero = () => {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 pt-8">
+            <div className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 pt-6 sm:pt-8">
               <div className="space-y-2">
-                <div className="text-4xl md:text-5xl font-bold gradient-text">100%</div>
+                <div className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold gradient-text">100%</div>
                 <div className="text-sm text-muted-foreground">Call Automation</div>
               </div>
               <div className="space-y-2">
-                <div className="text-4xl md:text-5xl font-bold gradient-text">24/7</div>
+                <div className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold gradient-text">24/7</div>
                 <div className="text-sm text-muted-foreground">AI Availability</div>
               </div>
               <div className="space-y-2">
-                <div className="text-4xl md:text-5xl font-bold gradient-text">48hr</div>
+                <div className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold gradient-text">48hr</div>
                 <div className="text-sm text-muted-foreground">Setup Time</div>
               </div>
             </div>
           </div>
 
           {/* Right Side - Animated 3D Visual */}
-          <div className="relative hidden lg:flex items-center justify-center h-[600px]">
+          <div className="relative hidden sm:flex items-center justify-center h-[400px] sm:h-[500px] lg:h-[600px] mt-12 lg:mt-0">
             {/* Main Animated Container */}
             <div className="relative w-full h-full flex items-center justify-center">
               {/* Large Gradient Circle */}

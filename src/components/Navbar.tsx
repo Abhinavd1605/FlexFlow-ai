@@ -80,7 +80,7 @@ export const Navbar = () => {
   return (
     <nav className="fixed top-0 w-full z-50 py-4 bg-transparent">
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-20 border border-black/10 dark:border-white/10 rounded-full px-8 backdrop-blur-sm transition-all duration-300 hover:border-black/20 dark:hover:border-white/20 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-white/5">
+        <div className="flex items-center justify-between h-16 sm:h-20 border border-black/10 dark:border-white/10 rounded-full px-4 sm:px-8 backdrop-blur-sm transition-all duration-300 hover:border-black/20 dark:hover:border-white/20 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-white/5">
           <a 
             href="/"
             className="text-2xl font-heading font-bold text-foreground ml-4 hover:scale-125 transition-transform duration-300 dark:text-white"
@@ -120,12 +120,12 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-2">
-            <ThemeToggle />
+          <div className="flex md:hidden items-center">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="ml-2"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
