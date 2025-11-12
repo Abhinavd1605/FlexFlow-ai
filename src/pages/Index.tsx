@@ -1,12 +1,12 @@
 import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
+import { SplineSceneBasic } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Services } from "@/components/Services";
 import { Industries } from "@/components/Industries";
 import { HowItWorks } from "@/components/HowItWorks";
 import { LiveDemos } from "@/components/LiveDemos";
 import { Team as Pricing } from "@/components/Pricing";
-import { Testimonials } from "@/components/Testimonials";
+import Testimonials from "@/components/Testimonials";
 import { CTA } from "@/components/CTA";
 import { Footer } from "@/components/Footer";
 import { ChatBot } from "@/components/ChatBot";
@@ -26,7 +26,7 @@ const Index = () => {
         <div className="absolute -bottom-32 right-12 h-56 w-56 rounded-full bg-primary/20 blur-3xl" />
       </div>
       <Navbar />
-      <Hero />
+      <SplineSceneBasic />
       <WhyChoose />
       <About />
       <Services />
