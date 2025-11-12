@@ -110,7 +110,6 @@ export const Navbar = () => {
           </div>
 
           <div className="flex items-center space-x-2">
-            <ThemeToggle />
               <Button
                 onClick={handleBookDemoClick}
                 className="gradient-primary font-semibold rounded-full px-6 py-2 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"

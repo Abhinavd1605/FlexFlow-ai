@@ -11,6 +11,7 @@ import { WorkflowAutomation } from "./pages/services/WorkflowAutomation";
 import { AIWebsiteBuilder } from "./pages/services/AIWebsiteBuilder";
 import { PersonalChatbots } from "./pages/services/PersonalChatbots";
 import { AutomatedCalling } from "./pages/services/AutomatedCalling";
+import ClickSpark from './components/ClickSpark';
 
 const queryClient = new QueryClient();
 
@@ -19,7 +20,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <div className="relative w-full min-h-screen">
+          <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services/voice-agents" element={<VoiceAgents />} />
@@ -30,8 +32,9 @@ const App = () => (
           <Route path="/services/automated-calling" element={<AutomatedCalling />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </div>
     </TooltipProvider>
   </QueryClientProvider>
 );

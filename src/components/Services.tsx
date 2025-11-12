@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { CursorGlow } from "./CursorGlow";
+
 
 export const Services = () => {
   const navigate = useNavigate();
@@ -65,7 +65,6 @@ export const Services = () => {
         <div className="absolute top-1/4 -right-1/4 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-purple-500/10 to-transparent mix-blend-overlay blur-3xl animate-float" />
       </div>
       
-      <CursorGlow />
       
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">

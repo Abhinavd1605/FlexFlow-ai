@@ -5,18 +5,31 @@ import { Card } from "@/components/ui/card";
 import { Spotlight } from "@/components/ui/spotlight";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Loader2 } from "lucide-react";
-
+import LightRays from './LightRays';
 // Lazy load the 3D scene
 const LazySplineScene = lazy(() => import('@/components/ui/LazySplineScene'));
 
 export function SplineSceneBasic() {
   return (
     <Card className="w-full min-h-[calc(100vh-80px)] bg-black/[0.96] relative overflow-hidden border-0 pt-20 lg:pt-0">
+      <div className="absolute inset-0 w-full h-full pointer-events-none">
+        <LightRays
+           raysOrigin="top-center"
+    raysColor="#ffffffff"
+    raysSpeed={1.5}
+    lightSpread={0.8}
+    rayLength={1.2}
+    followMouse={true}
+    mouseInfluence={0.1}
+    noiseAmount={0.1}
+    distortion={0.05}
+    className="custom-rays"
+        />
+      </div>
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="white"
       />
-      
         <div className="h-full">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 h-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center h-full max-w-7xl mx-auto">
