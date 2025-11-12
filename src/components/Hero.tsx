@@ -1,14 +1,17 @@
 'use client'
 
-import { SplineScene } from "@/components/ui/splite";
-import { Card } from "@/components/ui/card"
-import { Spotlight } from "@/components/ui/spotlight"
+import { Suspense, lazy } from 'react';
+import { Card } from "@/components/ui/card";
+import { Spotlight } from "@/components/ui/spotlight";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Play, Loader2 } from "lucide-react";
+
+// Lazy load the 3D scene
+const LazySplineScene = lazy(() => import('@/components/ui/LazySplineScene'));
 
 export function SplineSceneBasic() {
   return (
-    <Card className="w-full h-[650px] bg-black/[0.96] relative overflow-hidden border-0">
+    <Card className="w-full h-screen bg-black/[0.96] relative overflow-hidden border-0">
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="white"
@@ -20,16 +23,10 @@ export function SplineSceneBasic() {
               {/* Left Content */}
               <div className="space-y-8 text-left">
                 {/* Badge */}
-                <div className="inline-flex items-center gap-2 glass-card px-4 py-2 animate-fade-in w-fit">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                  </span>
-                  <span className="text-sm font-medium">✨ AI-Powered Business Automation</span>
-                </div>
+                
 
                 {/* Main Heading */}
-                <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl font-heading font-black leading-tight sm:leading-[1.1] animate-fade-in">
+                <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-heading font-black leading-tight sm:leading-[1.1] animate-fade-in">
                   Automate <br />
                   Everything. <br />
                   <span className="gradient-text font-black">Effortlessly.</span>
@@ -59,12 +56,20 @@ export function SplineSceneBasic() {
                 </div>
               </div>
 
-              {/* Right content */}
+              {/* Right content with Suspense boundary */}
               <div className="relative h-full w-full min-h-[400px] lg:min-h-[500px]">
-                <SplineScene 
-                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                  className="w-full h-full"
-                />
+                <Suspense 
+                  fallback={
+                    <div className="w-full h-full flex items-center justify-center bg-black/5 rounded-xl">
+                      <Loader2 className="h-12 w-12 animate-spin text-primary" />
+                    </div>
+                  }
+                >
+                  <LazySplineScene 
+                    scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                    className="w-full h-full"
+                  />
+                </Suspense>
               </div>
             </div>
           </div>
