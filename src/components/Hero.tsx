@@ -11,21 +11,17 @@ const LazySplineScene = lazy(() => import('@/components/ui/LazySplineScene'));
 
 export function SplineSceneBasic() {
   return (
-    <Card className="w-full h-screen bg-black/[0.96] relative overflow-hidden border-0">
+    <Card className="w-full min-h-[calc(100vh-80px)] bg-black/[0.96] relative overflow-hidden border-0 pt-20 lg:pt-0">
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="white"
       />
       
         <div className="h-full">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 h-full">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 h-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center h-full max-w-7xl mx-auto">
               {/* Left Content */}
               <div className="space-y-8 text-left">
-                {/* Badge */}
-                
-
-                {/* Main Heading */}
                 <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-heading font-black leading-tight sm:leading-[1.1] animate-fade-in">
                   Automate <br />
                   Everything. <br />
