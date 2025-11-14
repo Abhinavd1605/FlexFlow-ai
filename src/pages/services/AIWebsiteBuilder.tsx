@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe, LayoutTemplate, Zap, CheckCircle, Code, Palette } from "lucide-react";
+import { CalendlyModal } from "@/components/CalendlyModal";
 
 // Animation variants
 const container = {
@@ -20,6 +21,8 @@ const item = {
 };
 
 export const AIWebsiteBuilder = () => {
+  const [showCalendly, setShowCalendly] = useState(false);
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -84,7 +87,7 @@ export const AIWebsiteBuilder = () => {
                     variant="outline" 
                     size="lg"
                     className="w-full"
-                    onClick={() => window.open('https://calendly.com/team-flexflowai/30min', '_blank', 'noopener,noreferrer')}
+                    onClick={() => setShowCalendly(true)}
                   >
                     Book a Demo
                   </Button>
@@ -190,7 +193,7 @@ export const AIWebsiteBuilder = () => {
                   variant="outline" 
                   size="lg" 
                   className="w-full sm:w-auto border-white text-white hover:bg-white/10"
-                  onClick={() => window.open('https://calendly.com/team-flexflowai/30min', '_blank', 'noopener,noreferrer')}
+                  onClick={() => setShowCalendly(true)}
                 >
                   Request Demo
                 </Button>
@@ -201,6 +204,7 @@ export const AIWebsiteBuilder = () => {
       </main>
 
       <Footer />
+      <CalendlyModal open={showCalendly} onOpenChange={setShowCalendly} />
     </motion.div>
   );
 };
