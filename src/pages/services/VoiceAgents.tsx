@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Play, Phone, Clock, MessageCircle, Zap, CheckCircle } from "lucide-react";
+import { CalendlyModal } from "@/components/CalendlyModal";
 
 // Animation variants
 const container = {
@@ -27,6 +28,8 @@ const fadeIn = {
 };
 
 export const VoiceAgents = () => {
+  const [showCalendly, setShowCalendly] = useState(false);
+  
   // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -106,7 +109,7 @@ export const VoiceAgents = () => {
                 variant="outline" 
                 size="lg" 
                 className="w-full"
-                onClick={() => window.open('https://calendly.com/team-flexflowai/30min', '_blank', 'noopener,noreferrer')}
+                onClick={() => setShowCalendly(true)}
               >
                 Book a Demo
               </Button>
@@ -302,7 +305,7 @@ export const VoiceAgents = () => {
                   variant="outline" 
                   size="lg" 
                   className="w-full sm:w-auto"
-                  onClick={() => window.open('https://calendly.com/team-flexflowai/30min', '_blank', 'noopener,noreferrer')}
+                  onClick={() => setShowCalendly(true)}
                 >
                   Schedule a Demo
                 </Button>
@@ -313,6 +316,7 @@ export const VoiceAgents = () => {
       </main>
 
       <Footer />
+      <CalendlyModal open={showCalendly} onOpenChange={setShowCalendly} />
     </motion.div>
   );
 };

@@ -1,15 +1,18 @@
 'use client'
 
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import { Card } from "@/components/ui/card";
 import { Spotlight } from "@/components/ui/spotlight";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Loader2 } from "lucide-react";
 import LightRays from './LightRays';
+import { CalendlyModal } from './CalendlyModal';
 // Lazy load the 3D scene
 const LazySplineScene = lazy(() => import('@/components/ui/LazySplineScene'));
 
 export function SplineSceneBasic() {
+  const [showCalendly, setShowCalendly] = useState(false);
+
   return (
     <Card className="w-full min-h-[calc(100vh-80px)] bg-black/[0.96] relative overflow-hidden border-0 pt-20 lg:pt-0">
       <div className="absolute inset-0 w-full h-full pointer-events-none">
@@ -57,7 +60,7 @@ export function SplineSceneBasic() {
                     size="lg" 
                     variant="outline" 
                     className="glow-border text-base group"
-                    onClick={() => window.open('https://calendly.com/team-flexflowai/30min', '_blank', 'noopener,noreferrer')}
+                    onClick={() => setShowCalendly(true)}
                   >
                     Book Free Consultation
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -83,6 +86,7 @@ export function SplineSceneBasic() {
             </div>
           </div>
         </div>
+      <CalendlyModal open={showCalendly} onOpenChange={setShowCalendly} />
       </Card>
   )
 }

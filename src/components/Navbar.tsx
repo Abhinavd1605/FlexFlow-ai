@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "./theme-toggle";
 import { soundManager } from "@/lib/sounds";
+import { CalendlyModal } from "./CalendlyModal";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showCalendly, setShowCalendly] = useState(false);
   const isHomePage = location.pathname === '/';
   
   // Handle scroll to section when navigating from another page
@@ -74,7 +76,7 @@ export const Navbar = () => {
   
   const handleBookDemoClick = () => {
     soundManager.play('hardClick', 0.3);
-    window.open('https://calendly.com/team-flexflowai/30min', '_blank', 'noopener,noreferrer');
+    setShowCalendly(true);
   };
 
   return (
@@ -146,7 +148,11 @@ export const Navbar = () => {
             ))}
             <div className="px-4 pt-2">
               <Button 
-                onClick={() => window.open('https://calendly.com/team-flexflowai/30min', '_blank', 'noopener,noreferrer')}
+                onClick={() => {
+                  soundManager.play('hardClick', 0.3);
+                  setShowCalendly(true);
+                  setIsMenuOpen(false);
+                }}
                 className="w-full gradient-primary font-semibold rounded-full py-2 hover:scale-[1.02] transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
               >
                 Book Demo
@@ -155,6 +161,7 @@ export const Navbar = () => {
           </div>
         )}
       </div>
+      <CalendlyModal open={showCalendly} onOpenChange={setShowCalendly} />
     </nav>
   );
 };

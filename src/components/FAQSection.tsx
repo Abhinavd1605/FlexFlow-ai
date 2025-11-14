@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { CalendlyModal } from './CalendlyModal';
 
 type FAQItem = {
   question: string;
@@ -38,6 +39,7 @@ const faqData: FAQItem[] = [
 
 export const FAQSection = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [showCalendly, setShowCalendly] = useState(false);
 
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -101,16 +103,15 @@ export const FAQSection = () => {
           <p className="text-muted-foreground mb-6">
             Can't find the answer you're looking for? Our team is here to help.
           </p>
-          <a 
-            href="https://calendly.com/team-flexflowai/30min" 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <button 
+            onClick={() => setShowCalendly(true)}
             className="inline-flex items-center justify-center px-8 py-3 rounded-full font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Schedule a Call
-          </a>
+          </button>
         </div>
       </div>
+      <CalendlyModal open={showCalendly} onOpenChange={setShowCalendly} />
     </section>
   );
 };

@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { CalendlyModal } from "./CalendlyModal";
 
 export const CTA = () => {
+  const [showCalendly, setShowCalendly] = useState(false);
+
   return (
+    <>
     <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--glow-blue)/0.2),transparent_70%)]"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsl(var(--glow-violet)/0.2),transparent_70%)]"></div>
@@ -24,7 +29,7 @@ export const CTA = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="gradient-primary font-semibold text-lg group"  onClick={() => window.open('https://calendly.com/team-flexflowai/30min', '_blank', 'noopener,noreferrer')}>
+              <Button size="lg" className="gradient-primary font-semibold text-lg group" onClick={() => setShowCalendly(true)}>
                 Book My Demo
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -42,5 +47,7 @@ export const CTA = () => {
         </div>
       </div>
     </section>
+    <CalendlyModal open={showCalendly} onOpenChange={setShowCalendly} />
+    </>
   );
 };
